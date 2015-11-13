@@ -1,10 +1,10 @@
 {
-  "name": "change-me",
-  "title": "Change Me",
+  "name": "fixed-header-table",
+  "title": "Fixed Header Table",
   "authors": [
     "Nam Thai <nthai@ciosolutions.com>"
   ],
-  "description": "Change Me",
+  "description": "I'm on the verge of giving up",
   "license": "MIT",
   "ignore": [
     "**/.*",

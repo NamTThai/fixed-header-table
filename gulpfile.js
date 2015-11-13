@@ -62,16 +62,6 @@ gulp.task('scripts-debug', function() {
     .pipe(gulp.dest('build/javascripts'));
 });
 
-gulp.task('images', function () {
-  return gulp.src('public/images/*')
-    .pipe($.cache($.imagemin({
-      progressive: true,
-      interlaced: true
-    })))
-    .pipe(gulp.dest('build/images'))
-    .pipe($.size({title: 'images'}));
-});
-
 gulp.task('copy', function () {
   var root = gulp.src(['public/*', '!public/precache.json'], {
     dot: true
@@ -146,13 +136,13 @@ gulp.task('serve', ['default-debug'], function (){
 gulp.task('default', ['clean'], function (callback) {
   runSequence(
     ['copy', 'styles', 'scripts'],
-    'images', 'vulcanize', 'precache',
+    'vulcanize', 'precache',
     callback);
 });
 
 gulp.task('default-debug', ['clean'], function (callback) {
   runSequence(
     ['copy', 'styles-debug', 'scripts-debug'],
-    'images', 'vulcanize', 'precache',
+    'vulcanize', 'precache',
     callback);
 });
