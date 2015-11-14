@@ -18,8 +18,8 @@ Out of many pathetic failures, I had two more successful attempts. Though both o
 
 ### More successful strategies
 
-1. [Clone header:](tree/try-2) As table scroll to the top of the screen, clone itself, remove the body leaving only the header and set header's position to fixed.
-1. [Separate header into a different table from the start:](tree/try-1) Separate table header into a different table, re-adjust column width as content populate.
+1. [Clone header:](https://github.com/NamTThai/fixed-header-table/tree/try-2) As table scroll to the top of the screen, clone itself, remove the body leaving only the header and set header's position to fixed.
+1. [Separate header into a different table from the start:](https://github.com/NamTThai/fixed-header-table/tree/try-1) Separate table header into a different table, re-adjust column width as content populate.
 
 ### Biggest problems
 
