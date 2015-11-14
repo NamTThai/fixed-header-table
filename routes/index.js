@@ -1,29 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
-var allRoutes = ['one', 'two'];
 var bower = require('../bower.json');
 
 // Get home page
-getRoute();
-
-allRoutes.forEach(function(route) {
-  getRoute(route);
+router.get('/', function(req, res) {
+  res.render('index', {
+    appName: bower.name,
+    appTitle: bower.title
+  });
 });
 
-function getRoute(route) {
-  var path = '/' + ((route) ? route : '');
-  router.get(path, function(req, res) {
-    if (!route) {
-      route = allRoutes[0];
-    }
+router.get('/dataSuccess', function(req, res) {
+  res.json(require('./dataSuccess.json'));
+});
 
-    res.render('index', {
-      route: route,
-      appName: bower.name,
-      appTitle: bower.title
-    });
-  });
-}
+router.get('/dataFail', function(req, res) {
+  res.json(require('./dataFailed.json'));
+});
 
 module.exports = router;

@@ -1,15 +1,11 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-
-var log = require('./routes/log');
 
 var appName = require('./bower.json').name;
 var appPath = '/' + appName + '/';
@@ -22,7 +18,6 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 app.use(compression());
-app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,7 +25,6 @@ app.use(cookieParser());
 app.use(appPath, express.static(path.join(__dirname, 'build')));
 
 app.use(appPath, index);
-app.use(path.join(appPath, 'user'), users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

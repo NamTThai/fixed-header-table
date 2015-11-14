@@ -1,18 +1,6 @@
 document.addEventListener("WebComponentsReady", function() {
   var eventListener = document.querySelector("#event-listener");
 
-  eventListener.route = route;
-
-  eventListener.eDrawerItemClick = function(event) {
-    var drawer = document.querySelector(".drawer-panel");
-    if (drawer.narrow) {
-      drawer.closeDrawer();
-    }
-
-    var route = event.target.getAttribute("data-route");
-    window.history.pushState("", "", appPath + route);
-  };
-
   eventListener.eHeaderTransform = function(event) {
     var appName = document.querySelector('#mainToolbar .app-name');
     var middleContainer = document.querySelector('#mainToolbar .middle-container');
@@ -26,5 +14,21 @@ document.addEventListener("WebComponentsReady", function() {
     Polymer.Base.transform('translate3d(0,' + yRatio * 100 + '%,0)', middleContainer);
     Polymer.Base.transform('scale(' + scaleBottom + ') translateZ(0)', bottomContainer);
     Polymer.Base.transform('scale(' + scaleMiddle + ') translateZ(0)', appName);
+  };
+
+  eventListener.getSuccessData = function() {
+    $.get(appPath + "dataSuccess", function(data) {
+      var table = document.querySelector('fixed-header-table');
+      table.headers = ["AAAA", "AAAAAAAAA", "AAAAAA", "AAAAA", "AAA", "AAAA AAAAAAA", "AAAAAAA", "AAAAAAAA"];
+      table.rows = data;
+    });
+  };
+
+  eventListener.getFailedData = function() {
+    $.get(appPath + "dataFail", function(data) {
+      var table = document.querySelector('fixed-header-table');
+      table.headers = ["AAAA", "AAAAAAAAA", "AAAAAA", "AAAAA", "AAA", "AAAAAAAAA", "AAAAAAA", "AAAAAAA", "AAAAA", "AAAAAAAAA"];
+      table.rows = data;
+    });
   };
 });
