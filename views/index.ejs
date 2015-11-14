@@ -24,6 +24,14 @@
     * {
       box-sizing: border-box;
     }
+
+    .frozen-table-header {
+      margin: 0 auto;
+      border-collapse: collapse;
+      background-color: white;
+      position: fixed;
+      table-layout: fixed;
+    }
   </style>
 
   <!-- Components, Styles and Scripts import -->
@@ -50,8 +58,7 @@
         </paper-toolbar>
         <div class="content">
           <div>
-            <button on-click="getSuccessData">Get Success Data!</button>
-            <button on-click="getFailedData">Get Failed Data!</button>
+            <button on-click="getData">Get Data!</button>
           </div>
           <fixed-header-table></fixed-header-table>
         </div>
