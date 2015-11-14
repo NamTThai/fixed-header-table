@@ -62,7 +62,6 @@
       is: "fixed-header-table",
 
       eFreezeHeader: function() {
-        console.log("freeze header");
         var table = this.$.table;
         var header = table.cloneNode(true);
         header.setAttribute("class", "frozen-table-header");
@@ -84,8 +83,6 @@
         for (var i = 0; i < newHeaders.length; i++) {
           newHeaders[i].style.width = oldHeaders[i].offsetWidth + "px";
         }
-
-        console.log(header);
 
         this.$.tableWrapper.appendChild(header);
         this._freezedHeader = header;
