@@ -19,14 +19,18 @@
 
   <!-- Server variables -->
   <script>
-    var route = "<%= route %>";
     var appName = "<%= appName %>";
     var appPath = "/" + appName + "/";
   </script>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+
   <!-- Components, Styles and Scripts import -->
   <link rel="import" href="components/components.vulcanized.html">
-  <link rel="stylesheet" href="stylesheets/styles.css">
   <script src="javascripts/scripts.js"></script>
 
   <!-- My components in development, until sourcemaps support vulcanize -->
@@ -37,14 +41,6 @@
 <body class="fullbleed layout vertical">
   <template id="event-listener" is="dom-bind">
     <paper-drawer-panel class="drawer-panel">
-      <div drawer>
-        <paper-toolbar class="drawer-toolbar">
-          <span class="drawer-toolbar-menu">Menu</span>
-        </paper-toolbar>
-        <paper-menu attr-for-selected="data-route" selected="{{route}}">
-          <paper-item data-route="one" on-click="eDrawerItemClick">Sample Item</paper-item>
-        </paper-menu>
-      </div>
       <paper-scroll-header-panel main condenses keep-condensed-header on-paper-header-transform="eHeaderTransform">
         <paper-toolbar id="mainToolbar" class="tall">
           <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>

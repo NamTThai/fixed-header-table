@@ -1,18 +1,6 @@
 document.addEventListener("WebComponentsReady", function() {
   var eventListener = document.querySelector("#event-listener");
 
-  eventListener.route = route;
-
-  eventListener.eDrawerItemClick = function(event) {
-    var drawer = document.querySelector(".drawer-panel");
-    if (drawer.narrow) {
-      drawer.closeDrawer();
-    }
-
-    var route = event.target.getAttribute("data-route");
-    window.history.pushState("", "", appPath + route);
-  };
-
   eventListener.eHeaderTransform = function(event) {
     var appName = document.querySelector('#mainToolbar .app-name');
     var middleContainer = document.querySelector('#mainToolbar .middle-container');
