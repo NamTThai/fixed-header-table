@@ -2,6 +2,7 @@
   <style>
     #tableWrapper {
       overflow-x: auto;
+      margin: 48px;
     }
 
     table {
@@ -15,6 +16,11 @@
       border: 2px solid lightgrey;
     }
 
+    .wrapper {
+      max-height: 500px;
+      overflow-y: scroll;
+    }
+
     .tb-footer {
       text-align: center;
     }
@@ -26,41 +32,45 @@
 
   <template>
     <div id="tableWrapper">
-      <table>
-        <thead id="tableHeader">
-          <tr>
-            <template id="headers" is="dom-repeat" items="[[headers]]">
-              <th>[[item.value]]</th>
-            </template>
-          </tr>
-        </thead>
-      </table>
-      <table>
-        <tfoot id="tableFooter">
-          <tr>
-            <template id="footers" is="dom-repeat" items="[[headers]]" on-dom-change="_resetHeaderLength">
-              <td class="tb-footer">[[item.value]]</td>
-            </template>
-          </tr>
-        </tfoot>
-        <tbody>
-          <template is="dom-repeat" id="rows" items="[[rows]]" as="row" on-dom-change="_resetHeaderLength">
+      <div class="wrapper">
+        <table>
+          <thead id="tableHeader">
             <tr>
-              <td>[[row.id]]</td>
-              <td>
-                <ul>
-                  <template is="dom-repeat" items="[[row.violationArray]]" as="violation" on-dom-change="_resetHeaderLength">
-                    <li>[[violation.name]]</li>
-                  </template>
-                <ul>
-              </td>
-              <template is="dom-repeat" items="[[row.info]]" on-dom-change="_resetHeaderLength">
-                <td class="result-tb-data">[[item]]</td>
+              <template id="headers" is="dom-repeat" items="[[headers]]">
+                <th>[[item]]</th>
               </template>
             </tr>
-          </template>
-        </tbody>
-      </table>
+          </thead>
+        </table>
+      </div>
+      <div class="wrapper">
+        <table>
+          <tfoot id="tableFooter">
+            <tr>
+              <template id="footers" is="dom-repeat" items="[[headers]]" on-dom-change="_resetHeaderLength">
+                <td class="tb-footer">[[item]]</td>
+              </template>
+            </tr>
+          </tfoot>
+          <tbody>
+            <template is="dom-repeat" id="rows" items="[[rows]]" as="row" on-dom-change="_resetHeaderLength">
+              <tr>
+                <td>[[row.id]]</td>
+                <td>
+                  <ul>
+                    <template is="dom-repeat" items="[[row.violationArray]]" on-dom-change="_resetHeaderLength">
+                      <li>[[item]]</li>
+                    </template>
+                  <ul>
+                </td>
+                <template is="dom-repeat" items="[[row.info]]" on-dom-change="_resetHeaderLength">
+                  <td class="result-tb-data">[[item]]</td>
+                </template>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
     </div>
   </template>
 
@@ -68,11 +78,27 @@
     Polymer({
       is: "fixed-header-table",
 
-      ready: function() {
+      setData: function(data) {
+        this.rows = data;
       },
 
-      setData: function(data) {
-        console.log(data);
+      _resetHeaderLength: function() {
+        var tableHeader = this.$.tableHeader;
+        var tableFooter = this.$.tableFooter;
+        var bodyWidth = Math.max(tableHeader.offsetWidth, tableFooter.offsetWidth) + "px";
+        // var bodyWidth = resultTableBody.offsetWidth + "px";
+        tableHeader.style.width = bodyWidth;
+        tableFooter.style.width = bodyWidth;
+
+        var headerColumns = tableHeader.querySelectorAll("th");
+        var footerColumns = tableFooter.querySelectorAll("td");
+
+        for (var i = 0; i < headerColumns.length; i++) {
+          var columnWidth = Math.max(headerColumns[i].offsetWidth, footerColumns[i].offsetWidth) + "px";
+          // var columnWidth = bodyColumns[i].offsetWidth + "px";
+          headerColumns[i].style.width = columnWidth;
+          footerColumns[i].style.width = columnWidth;
+        }
       }
     });
   </script>

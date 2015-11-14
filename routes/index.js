@@ -30,4 +30,8 @@ router.get('/dataSuccess', function(req, res) {
   res.json(require('./dataSuccess.json'));
 });
 
+router.get('/dataFail', function(req, res) {
+  res.json(require('./dataFailed.json'));
+});
+
 module.exports = router;

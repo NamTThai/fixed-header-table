@@ -30,13 +30,17 @@ document.addEventListener("WebComponentsReady", function() {
 
   eventListener.getSuccessData = function() {
     $.get(appPath + "dataSuccess", function(data) {
-      document.querySelector('fixed-header-table').setData(data);
+      var table = document.querySelector('fixed-header-table');
+      table.headers = ["AAAA", "AAAAAAAAA", "AAAAAA", "AAAAA", "AAA", "AAAA AAAAAAA", "AAAAAAA", "AAAAAAAA"];
+      table.rows = data;
     });
   };
 
   eventListener.getFailedData = function() {
     $.get(appPath + "dataFail", function(data) {
-      document.querySelector('fixed-header-table').setData(data);
+      var table = document.querySelector('fixed-header-table');
+      table.headers = ["AAAA", "AAAAAAAAA", "AAAAAA", "AAAAA", "AAA", "AAAAAAAAA", "AAAAAAA", "AAAAAAA", "AAAAA", "AAAAAAAAA"];
+      table.rows = data;
     });
   };
 });
