@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var allRoutes = ['one', 'two'];
+var allRoutes = ['one'];
 var bower = require('../bower.json');
 
 // Get home page
@@ -25,5 +25,9 @@ function getRoute(route) {
     });
   });
 }
+
+router.get('/dataSuccess', function(req, res) {
+  res.json(require('./dataSuccess.json'));
+});
 
 module.exports = router;

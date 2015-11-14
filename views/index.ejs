@@ -31,6 +31,7 @@
 
   <!-- My components in development, until sourcemaps support vulcanize -->
   <link rel="import" href="components/custom-style.html">
+  <link rel="import" href="components/fixed-header-table.html">
 
 </head>
 <body class="fullbleed layout vertical">
@@ -41,8 +42,7 @@
           <span class="drawer-toolbar-menu">Menu</span>
         </paper-toolbar>
         <paper-menu attr-for-selected="data-route" selected="{{route}}">
-          <paper-item data-route="one" on-click="eDrawerItemClick">Sample Item 1</paper-item>
-          <paper-item data-route="two" on-click="eDrawerItemClick">Sample Item 2</paper-item>
+          <paper-item data-route="one" on-click="eDrawerItemClick">Sample Item</paper-item>
         </paper-menu>
       </div>
       <paper-scroll-header-panel main condenses keep-condensed-header on-paper-header-transform="eHeaderTransform">
@@ -56,17 +56,11 @@
           </div>
         </paper-toolbar>
         <div class="content">
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
-            <section data-route="one">
-              <img src="https://placekitten.com/g/800/800"></img>
-              <img src="https://placekitten.com/g/800/800"></img>
-              <img src="https://placekitten.com/g/800/800"></img>
-              <img src="https://placekitten.com/g/800/800"></img>
-              <img src="https://placekitten.com/g/800/800"></img>
-              <img src="https://placekitten.com/g/800/800"></img>
-            </section>
-            <section data-route="two">Sample Item 2</section>
-          </iron-pages>
+          <div>
+            <button on-click="getSuccessData">Get Success Data!</button>
+            <button on-click="getFailedData">Get Failed Data!</button>
+          </div>
+          <fixed-header-table></fixed-header-table>
         </div>
       </paper-scroll-header-panel>
     </paper-drawer-panel>

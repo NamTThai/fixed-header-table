@@ -27,4 +27,16 @@ document.addEventListener("WebComponentsReady", function() {
     Polymer.Base.transform('scale(' + scaleBottom + ') translateZ(0)', bottomContainer);
     Polymer.Base.transform('scale(' + scaleMiddle + ') translateZ(0)', appName);
   };
+
+  eventListener.getSuccessData = function() {
+    $.get(appPath + "dataSuccess", function(data) {
+      document.querySelector('fixed-header-table').setData(data);
+    });
+  };
+
+  eventListener.getFailedData = function() {
+    $.get(appPath + "dataFail", function(data) {
+      document.querySelector('fixed-header-table').setData(data);
+    });
+  };
 });

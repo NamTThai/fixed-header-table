@@ -1,0 +1,79 @@
+<dom-module id="fixed-header-table">
+  <style>
+    #tableWrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      background-color: white;
+      overflow: auto;
+    }
+
+    table, th, td {
+      border: 2px solid lightgrey;
+    }
+
+    .tb-footer {
+      text-align: center;
+    }
+
+    th, td {
+      padding: 12px;
+    }
+  </style>
+
+  <template>
+    <div id="tableWrapper">
+      <table>
+        <thead id="tableHeader">
+          <tr>
+            <template id="headers" is="dom-repeat" items="[[headers]]">
+              <th>[[item.value]]</th>
+            </template>
+          </tr>
+        </thead>
+      </table>
+      <table>
+        <tfoot id="tableFooter">
+          <tr>
+            <template id="footers" is="dom-repeat" items="[[headers]]" on-dom-change="_resetHeaderLength">
+              <td class="tb-footer">[[item.value]]</td>
+            </template>
+          </tr>
+        </tfoot>
+        <tbody>
+          <template is="dom-repeat" id="rows" items="[[rows]]" as="row" on-dom-change="_resetHeaderLength">
+            <tr>
+              <td>[[row.id]]</td>
+              <td>
+                <ul>
+                  <template is="dom-repeat" items="[[row.violationArray]]" as="violation" on-dom-change="_resetHeaderLength">
+                    <li>[[violation.name]]</li>
+                  </template>
+                <ul>
+              </td>
+              <template is="dom-repeat" items="[[row.info]]" on-dom-change="_resetHeaderLength">
+                <td class="result-tb-data">[[item]]</td>
+              </template>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: "fixed-header-table",
+
+      ready: function() {
+      },
+
+      setData: function(data) {
+        console.log(data);
+      }
+    });
+  </script>
+</dom-module>
